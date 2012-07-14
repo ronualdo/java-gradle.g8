@@ -12,12 +12,12 @@ test {
 
   beforeSuite { testDescriptor ->
     if (testDescriptor.className != null) {
-      println "===== ${testDescriptor.name} ====="
+      println "===== \${testDescriptor.name} ====="
     }
   }
   
   afterTest { desc, result -> 
-    colorPrint("Executing test ${desc.name} with result: ${result.resultType}", resultColor(result))
+    colorPrint("Executing test \${desc.name} with result: \${result.resultType}", resultColor(result))
     
     if (result.exception != null) {
       result.exception.printStackTrace()
