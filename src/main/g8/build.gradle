@@ -1,0 +1,52 @@
+apply plugin: 'java'
+apply plugin: 'eclipse'
+
+sourceCompatibility: 7
+targetCompatibility: 7
+
+repositories {
+  mavenCentral()
+}
+
+test {
+
+  beforeSuite { testDescriptor ->
+    if (testDescriptor.className != null) {
+      println "===== ${testDescriptor.name} ====="
+    }
+  }
+  
+  afterTest { desc, result -> 
+    colorPrint("Executing test ${desc.name} with result: ${result.resultType}", resultColor(result))
+    
+    if (result.exception != null) {
+      result.exception.printStackTrace()
+    }
+  }
+
+  afterSuite {
+    println ""
+  }
+}
+
+def resultColor(testResult) {
+  def color = "\033[91m"
+  
+  if (testResult.resultType == TestResult.ResultType.SUCCESS) { 
+    color = "\033[92m" 
+  } else if (testResult.resultType == TestResult.ResultType.SKIPPED) {
+    color = "\033[94M"
+  } 
+
+  color
+}
+
+def colorPrint(text, color) {
+  def whiteColor = "\033[0m"
+  println color + text + whiteColor
+}
+
+dependencies {
+  testCompile 'junit:junit:4.10'
+}
+
