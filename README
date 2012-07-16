@@ -1,1 +1,13 @@
 My personal java-gradle template
+
+A simple java project giter8 template using gradle as build tool and a little ruby script to make continous testing possible (depends on watchr gem).
+
+To use testing script, use command 'watchr test.watchr' from the project root folder.
+
+To see some avaialable tasks, just use 'gradles tasks' command.
+
+for more details:
+
+giter8 - https://github.com/n8han/giter8/
+
+watchr - https://github.com/mynyml/watchr/
